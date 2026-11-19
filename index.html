@@ -1,210 +1,264 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>슬림 냉온정 직수 정수기 비교 플랫폼</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>제이글로리 | 부동산 임대 · 유가증권 투자 · 크리스찬 교과서 출판</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; }
-    body { background-color: #f8fafc; color: #1e293b; line-height: 1.5; }
-    header { background: #0f172a; color: #fff; padding: 2.5rem 1.5rem; text-align: center; }
-    header h1 { font-size: 1.75rem; margin-bottom: 0.5rem; }
-    header p { color: #94a3b8; font-size: 0.95rem; }
-    .container { max-width: 1080px; margin: 0 auto; padding: 2rem 1rem; }
-    .control-panel { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; background: #fff; padding: 1.2rem; border-radius: 10px; border: 1px solid #e2e8f0; margin-bottom: 1.5rem; }
-    .mode-tabs { display: flex; gap: 0.5rem; background: #f1f5f9; padding: 0.3rem; border-radius: 8px; }
-    .tab-btn { padding: 0.5rem 1rem; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; background: transparent; color: #64748b; transition: all 0.2s; }
-    .tab-btn.active { background: #0284c7; color: #fff; }
-    .filter-group { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; font-size: 0.9rem; }
-    .filter-group label { display: flex; align-items: center; gap: 0.4rem; cursor: pointer; }
-    .add-box { background: #fff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 1.2rem; margin-bottom: 1.5rem; }
-    .add-box h2 { font-size: 1rem; margin-bottom: 0.8rem; color: #0f172a; }
-    .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.6rem; }
-    .form-grid input { padding: 0.55rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.88rem; width: 100%; }
-    .btn-primary { background: #0284c7; color: #fff; border: none; border-radius: 6px; padding: 0.55rem 1rem; font-weight: 600; cursor: pointer; }
-    .btn-primary:hover { background: #0369a1; }
-    .table-wrap { overflow-x: auto; background: #fff; border-radius: 10px; border: 1px solid #e2e8f0; margin-bottom: 2rem; }
-    table { width: 100%; border-collapse: collapse; text-align: center; min-width: 720px; }
-    th, td { padding: 1rem 0.75rem; border-bottom: 1px solid #e2e8f0; font-size: 0.93rem; }
-    th { background: #f8fafc; font-weight: 600; color: #334155; }
-    td:first-child, th:first-child { text-align: left; font-weight: 600; background: #f1f5f9; width: 140px; min-width: 140px; }
-    .brand-tag { font-size: 0.78rem; color: #0284c7; font-weight: 700; display: block; }
-    .model-name { font-size: 1.05rem; font-weight: 700; color: #0f172a; display: block; margin: 0.2rem 0; }
-    .del-btn { background: #fee2e2; color: #dc2626; border: none; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem; cursor: pointer; margin-top: 0.3rem; }
-    .price-highlight { font-size: 1.05rem; font-weight: 700; color: #0284c7; }
-    .badge { display: inline-block; padding: 0.2rem 0.5rem; background: #e0f2fe; color: #0369a1; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
-    .calc-card { background: #fff; padding: 1.5rem; border-radius: 10px; border: 1px solid #e2e8f0; }
-    .calc-card h2 { font-size: 1.15rem; margin-bottom: 1rem; }
-    .calc-controls { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-bottom: 1rem; }
-    select, input[type="number"] { padding: 0.55rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.93rem; }
-    .calc-result { background: #f0f9ff; border: 1px solid #bae6fd; padding: 1.2rem; border-radius: 8px; font-size: 1rem; }
-    .calc-result strong { color: #0284c7; font-size: 1.2rem; }
+    :root {
+      --primary: #0f294a;
+      --primary-dark: #091a30;
+      --accent: #b48a3e;
+      --text: #1f2937;
+      --muted: #64748b;
+      --bg-light: #f8fafc;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+      color: var(--text);
+      line-height: 1.7;
+      word-break: keep-all;
+    }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1024px; margin: 0 auto; padding: 0 20px; }
+
+    /* 상단 네비게이션 */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(6px);
+    }
+    .nav {
+      display: flex; justify-content: space-between; align-items: center;
+      height: 66px;
+    }
+    .logo {
+      font-size: 1.3rem; font-weight: 800; color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+    .logo span { color: var(--accent); font-size: 0.85rem; margin-left: 6px; font-weight: 700; }
+    .nav-links { display: flex; gap: 26px; font-size: 0.95rem; font-weight: 600; color: #334155; }
+    .nav-links a:hover { color: var(--primary); }
+
+    /* 첫 화면 (히어로) */
+    .hero {
+      padding: 104px 0 92px;
+      background: linear-gradient(135deg, #0f294a 0%, #1e3a5f 100%);
+      color: #ffffff;
+      text-align: center;
+    }
+    .badge {
+      display: inline-block; padding: 6px 16px; border-radius: 999px;
+      background: rgba(180, 138, 62, 0.2); border: 1px solid rgba(180, 138, 62, 0.5);
+      color: #f3d08a; font-size: 0.85rem; font-weight: 700; margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: 2.35rem; font-weight: 800; line-height: 1.35;
+      margin-bottom: 18px;
+    }
+    .hero p {
+      max-width: 640px; margin: 0 auto 34px;
+      color: #cbd5e1; font-size: 1.05rem;
+    }
+    .btn {
+      display: inline-block; padding: 14px 30px; border-radius: 8px;
+      background: var(--accent); color: #ffffff; font-weight: 700;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.9; }
+
+    /* 공통 섹션 */
+    section { padding: 80px 0; }
+    .bg-light { background: var(--bg-light); }
+    .section-title { text-align: center; margin-bottom: 46px; }
+    .section-title h2 { font-size: 1.8rem; font-weight: 800; color: var(--primary); margin-bottom: 10px; }
+    .section-title p { color: var(--muted); }
+
+    /* 회사 소개 박스 */
+    .about-box {
+      background: #ffffff; border: 1px solid var(--border);
+      border-radius: 14px; padding: 40px;
+      display: grid; grid-template-columns: 1.1fr 1fr; gap: 36px; align-items: center;
+    }
+    .about-list { list-style: none; display: grid; gap: 14px; }
+    .about-list li {
+      padding-left: 22px; position: relative; font-size: 0.96rem;
+    }
+    .about-list li::before {
+      content: "▪"; position: absolute; left: 0; color: var(--accent); font-weight: 800;
+    }
+
+    /* 카드 그리드 */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: #ffffff; padding: 32px 28px; border-radius: 12px;
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--primary);
+    }
+    .card-num {
+      display: inline-block; font-size: 0.82rem; font-weight: 800;
+      color: var(--accent); margin-bottom: 8px; letter-spacing: 0.05em;
+    }
+    .card h3 { font-size: 1.22rem; margin-bottom: 12px; color: #0f172a; }
+    .card p { color: var(--muted); font-size: 0.95rem; }
+
+    /* 문의 섹션 */
+    .contact-wrap {
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 36px;
+      background: #ffffff; padding: 36px; border-radius: 14px; border: 1px solid var(--border);
+    }
+    .contact-info p { margin-bottom: 12px; font-size: 0.96rem; color: #334155; }
+    form { display: grid; gap: 14px; }
+    input, textarea, select {
+      width: 100%; padding: 12px 14px; border: 1px solid var(--border);
+      border-radius: 8px; font-size: 0.95rem; font-family: inherit; background: #fff;
+    }
+    textarea { min-height: 110px; resize: vertical; }
+    button[type="submit"] {
+      border: none; cursor: pointer; font-size: 1rem; background: var(--primary);
+    }
+
+    /* 푸터 */
+    footer {
+      background: #0f172a; color: #94a3b8;
+      padding: 42px 0; font-size: 0.85rem; line-height: 1.85;
+    }
+    footer strong { color: #f8fafc; }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.75rem; }
+      .about-box, .contact-wrap { grid-template-columns: 1fr; padding: 26px; }
+      .nav-links { gap: 16px; font-size: 0.88rem; }
+    }
   </style>
 </head>
 <body>
-<header>
-  <h1>슬림 냉온정 직수 정수기 비교 사이트</h1>
-  <p>일시불 자가관리 vs 렌탈 비용 비교 및 맞춤형 모델 스펙 분석</p>
-</header>
-<div class="container">
-  <div class="control-panel">
-    <div class="mode-tabs">
-      <button class="tab-btn active" id="tabLump" onclick="setMode('lump')">일시불 자가관리 기준</button>
-      <button class="tab-btn" id="tabRental" onclick="setMode('rental')">자가관리 렌탈 기준</button>
+
+  <!-- 상단 메뉴 -->
+  <header>
+    <div class="container nav">
+      <a href="#" class="logo">제이글로리<span>J.GLORY</span></a>
+      <nav class="nav-links">
+        <a href="#about">회사소개</a>
+        <a href="#business">사업영역</a>
+        <a href="#contact">문의하기</a>
+      </nav>
     </div>
-    <div class="filter-group">
-      <label><input type="checkbox" id="chkSlim" onchange="render()"> 가로 폭 17cm 이하만 보기</label>
-      <button class="del-btn" style="background:#e2e8f0; color:#334155;" onclick="resetData()">기본 목록 초기화</button>
+  </header>
+
+  <!-- 첫 화면 -->
+  <section class="hero">
+    <div class="container">
+      <span class="badge">REAL ESTATE · INVESTMENT · CHRISTIAN PUBLISHING</span>
+      <h1>바른 교육의 가치를 담은 크리스찬 교과서와<br />건전한 자산 운용으로 미래를 세웁니다</h1>
+      <p>제이글로리는 크리스찬 교과서 출판 사업을 중심으로 부동산 임대 및 유가증권 투자를 균형 있게 영위하며 선한 영향력과 지속 가능한 가치를 추구합니다.</p>
+      <a href="#contact" class="btn">도서 · 임대 · 제휴 문의하기</a>
     </div>
-  </div>
+  </section>
 
-  <div class="add-box">
-    <h2>+ 비교 모델 직접 추가하기</h2>
-    <div class="form-grid">
-      <input type="text" id="inBrand" placeholder="브랜드 (예: 쿠쿠)">
-      <input type="text" id="inName" placeholder="모델명 (예: 인스퓨어 100도)">
-      <input type="number" id="inWidth" step="0.1" placeholder="가로 폭 cm (예: 16.6)">
-      <input type="number" id="inLump" placeholder="일시불가 원 (예: 1150000)">
-      <input type="number" id="inFilter" placeholder="연 필터비 원 (예: 80000)">
-      <input type="number" id="inRental" placeholder="월 렌탈료 원 (예: 27900)">
-      <input type="text" id="inSpec" placeholder="주요 기능 (예: 100도 온수, UV)">
-      <button class="btn-primary" onclick="addModel()">비교표에 추가</button>
+  <!-- 회사 소개 -->
+  <section id="about">
+    <div class="container">
+      <div class="section-title">
+        <h2>회사 소개</h2>
+        <p>신뢰와 바른 원칙 위에 세워진 기업, 제이글로리입니다.</p>
+      </div>
+      <div class="about-box">
+        <div>
+          <h3 style="font-size:1.3rem; margin-bottom:14px; color:var(--primary);">
+            "다음 세대를 세우는 크리스찬 교육 콘텐츠와 안정적 자산 기반의 조화"
+          </h3>
+          <p style="color:var(--muted);">
+            제이글로리는 기독교 세계관과 교육적 전문성을 바탕으로 깊이 있는 크리스찬 교과서를 기획·출판하고 있습니다.
+            아울러 체계적인 부동산 임대와 원칙 있는 유가증권 투자를 통해 견고한 재무적 토대를 다지며 맡겨진 사명을 성실히 감당합니다.
+          </p>
+        </div>
+        <ul class="about-list">
+          <li><strong>크리스찬 교육 전문성:</strong> 성경적 가치관과 체계적 커리큘럼을 담은 교과서 출판</li>
+          <li><strong>안정적 자산 운용:</strong> 장기적 관점의 리스크 관리와 우량 자산 중심 운영</li>
+          <li><strong>상생하는 공간 관리:</strong> 임차인을 배려하는 쾌적하고 신뢰받는 부동산 임대</li>
+          <li><strong>책임 있는 경영:</strong> 투명한 의사결정과 성실한 파트너십</li>
+        </ul>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="table-wrap"><table id="compareTable"></table></div>
-
-  <div class="calc-card">
-    <h2>사용 기간별 총유지비 비교 (일시불 vs 렌탈)</h2>
-    <div class="calc-controls">
-      <select id="calcSelect" onchange="calculate()"></select>
-      <label>사용 약정/기간:
-        <select id="calcYears" onchange="calculate()">
-          <option value="3">3년 (36개월)</option>
-          <option value="5" selected>5년 (60개월)</option>
-          <option value="6">6년 (72개월)</option>
-        </select>
-      </label>
+  <!-- 핵심 사업영역 -->
+  <section id="business" class="bg-light">
+    <div class="container">
+      <div class="section-title">
+        <h2>사업 영역</h2>
+        <p>제이글로리의 3대 핵심 비즈니스를 소개합니다.</p>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <span class="card-num">BUSINESS 01</span>
+          <h3>출판업 (크리스찬 교과서)</h3>
+          <p>기독교 학교 및 교육 현장에 필요한 크리스찬 교과서와 교육 교재를 전문적으로 기획·출간합니다. 바른 신앙과 학문적 깊이를 겸비한 양질의 교육 콘텐츠를 제공합니다.</p>
+        </div>
+        <div class="card">
+          <span class="card-num">BUSINESS 02</span>
+          <h3>부동산 임대</h3>
+          <p>입지와 수요에 대한 면밀한 분석을 바탕으로 우량 부동산 자산을 보유·운용합니다. 체계적인 시설 관리와 원활한 소통으로 안정적인 임대 환경을 조성합니다.</p>
+        </div>
+        <div class="card">
+          <span class="card-num">BUSINESS 03</span>
+          <h3>유가증권 투자</h3>
+          <p>시장 흐름과 기업의 본질적 가치에 대한 신중한 분석을 토대로 유가증권 자산을 운용합니다. 철저한 리스크 관리를 원칙으로 건전하고 지속적인 수익 구조를 추구합니다.</p>
+        </div>
+      </div>
     </div>
-    <div class="calc-result" id="calcResult"></div>
-  </div>
-</div>
+  </section>
 
-<script>
-const initialData = [
-  { id: 1, brand: "코웨이", name: "아이콘 정수기 3", width: 18.0, lumpPrice: 1290000, yearlyFilter: 90000, rentalMonthly: 29900, temp: "냉수 · 온수(100도) · 정수", care: "UV 살균 + 셀프 필터 교체" },
-  { id: 2, brand: "SK매직", name: "초소형 플러스 직수", width: 16.4, lumpPrice: 1190000, yearlyFilter: 85000, rentalMonthly: 28900, temp: "냉수 · 온수 · 정수", care: "전해수 + UV 안심케어" },
-  { id: 3, brand: "LG전자", name: "퓨리케어 오브제컬렉션", width: 17.0, lumpPrice: 1250000, yearlyFilter: 95000, rentalMonthly: 30900, temp: "냉수 · 온수 · 정수", care: "고온 살균 + 무빙 출수탭" }
-];
+  <!-- 문의하기 -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>문의하기</h2>
+        <p>크리스찬 교과서 구매·출판, 부동산 임대 및 제휴 문의를 남겨주시면 신속히 회신드리겠습니다.</p>
+      </div>
+      <div class="contact-wrap">
+        <div class="contact-info">
+          <h3 style="margin-bottom:16px; color:var(--primary);">Contact Information</h3>
+          <p><strong>회사명:</strong> 제이글로리</p>
+          <p><strong>대표자:</strong> 김무열</p>
+          <p><strong>대표전화:</strong> 02-000-0000</p>
+          <p><strong>이메일:</strong> contact@jglory.co.kr</p>
+          <p><strong>운영시간:</strong> 평일 09:00 ~ 18:00 (주말·공휴일 휴무)</p>
+          <p><strong>주소:</strong> 주소를 입력해 주세요</p>
+        </div>
+        <form onsubmit="alert('제이글로리에 문의가 접수되었습니다. (실제 이메일 수신을 위해서는 폼 서비스 연동이 필요합니다)'); return false;">
+          <select required>
+            <option value="">문의 분야를 선택해 주세요</option>
+            <option value="크리스찬 교과서·출판">크리스찬 교과서 · 출판 문의</option>
+            <option value="부동산 임대">부동산 임대 문의</option>
+            <option value="제휴 및 기타">비즈니스 제휴 · 기타 문의</option>
+          </select>
+          <input type="text" placeholder="성함 또는 기관·업체명" required />
+          <input type="text" placeholder="연락처 (전화번호 또는 이메일)" required />
+          <textarea placeholder="문의하실 내용을 적어주세요." required></textarea>
+          <button type="submit" class="btn">문의 접수하기</button>
+        </form>
+      </div>
+    </div>
+  </section>
 
-let viewMode = 'lump';
-let models = JSON.parse(localStorage.getItem('slimHotColdPurifiers')) || [...initialData];
+  <!-- 하단 사업자 정보 -->
+  <footer>
+    <div class="container">
+      <p><strong>제이글로리</strong> | 대표자: 김무열 | 사업자등록번호: 000-00-00000</p>
+      <p>주소: 주소를 입력해 주세요 | 이메일: contact@jglory.co.kr | 전화: 02-000-0000</p>
+      <p style="margin-top:8px;">© 2026 제이글로리 (J.GLORY). All rights reserved.</p>
+    </div>
+  </footer>
 
-function save() { localStorage.setItem('slimHotColdPurifiers', JSON.stringify(models)); }
-
-function setMode(mode) {
-  viewMode = mode;
-  document.getElementById('tabLump').classList.toggle('active', mode === 'lump');
-  document.getElementById('tabRental').classList.toggle('active', mode === 'rental');
-  render();
-}
-
-function addModel() {
-  const brand = document.getElementById('inBrand').value.trim() || "기타";
-  const name = document.getElementById('inName').value.trim();
-  const width = parseFloat(document.getElementById('inWidth').value);
-  const lumpPrice = parseInt(document.getElementById('inLump').value, 10) || 0;
-  const yearlyFilter = parseInt(document.getElementById('inFilter').value, 10) || 0;
-  const rentalMonthly = parseInt(document.getElementById('inRental').value, 10) || 0;
-  const care = document.getElementById('inSpec').value.trim() || "직수형 / 자가관리";
-  if (!name || isNaN(width)) { alert("모델명과 가로 폭(cm)은 필수 입력 사항입니다."); return; }
-  models.push({ id: Date.now(), brand, name, width, lumpPrice, yearlyFilter, rentalMonthly, temp: "냉수 · 온수 · 정수", care });
-  ['inBrand','inName','inWidth','inLump','inFilter','inRental','inSpec'].forEach(id => document.getElementById(id).value = '');
-  save();
-  render();
-}
-
-function removeModel(id) {
-  models = models.filter(m => m.id !== id);
-  save();
-  render();
-}
-
-function resetData() {
-  if (confirm("기본 3종 모델로 초기화하시겠습니까?")) {
-    models = [...initialData];
-    save();
-    document.getElementById('chkSlim').checked = false;
-    render();
-  }
-}
-
-function escapeHtml(value) {
-  return String(value).replace(/[&<>'"]/g, char => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', "'":'&#39;', '"':'&quot;' }[char]));
-}
-
-function render() {
-  const onlySlim = document.getElementById('chkSlim').checked;
-  const list = models.filter(m => !onlySlim || m.width <= 17.0);
-  const table = document.getElementById('compareTable');
-
-  if (list.length === 0) {
-    table.innerHTML = `<tr><td style="text-align:center; padding:2rem;">조건에 맞는 모델이 없습니다.</td></tr>`;
-  } else {
-    let html = `<thead><tr><th>비교 항목</th>`;
-    list.forEach(m => {
-      html += `<th><span class="brand-tag">${escapeHtml(m.brand)}</span><span class="model-name">${escapeHtml(m.name)}</span><button class="del-btn" onclick="removeModel(${m.id})">삭제 ×</button></th>`;
-    });
-    html += `</tr></thead><tbody>`;
-
-    const rows = [
-      { label: "가로 폭", val: m => `<span class="badge">${m.width} cm</span>` },
-      { label: "출수 온도", val: m => escapeHtml(m.temp) },
-      { label: viewMode === 'lump' ? "일시불 기기가격" : "월 렌탈료 (자가관리)", val: m => viewMode === 'lump' ? `<span class="price-highlight">${m.lumpPrice.toLocaleString()}원</span>` : `<span class="price-highlight">월 ${m.rentalMonthly.toLocaleString()}원</span>` },
-      { label: viewMode === 'lump' ? "연간 필터 유지비" : "5년 렌탈 총액", val: m => viewMode === 'lump' ? `약 ${m.yearlyFilter.toLocaleString()}원 / 년` : `약 ${(m.rentalMonthly * 60).toLocaleString()}원` },
-      { label: "위생 및 특징", val: m => escapeHtml(m.care) }
-    ];
-
-    rows.forEach(r => {
-      html += `<tr><td>${r.label}</td>`;
-      list.forEach(m => html += `<td>${r.val(m)}</td>`);
-      html += `</tr>`;
-    });
-    html += `</tbody>`;
-    table.innerHTML = html;
-  }
-
-  const select = document.getElementById('calcSelect');
-  const previous = select.value;
-  select.innerHTML = models.map(m => `<option value="${m.id}">${escapeHtml(m.brand)} ${escapeHtml(m.name)}</option>`).join('');
-  if (models.some(m => String(m.id) === previous)) select.value = previous;
-  calculate();
-}
-
-function calculate() {
-  const id = Number(document.getElementById('calcSelect').value);
-  const model = models.find(m => m.id === id);
-  if (!model) {
-    document.getElementById('calcResult').innerHTML = "모델을 추가하거나 기본 목록을 초기화해 주세요.";
-    return;
-  }
-  const years = Number(document.getElementById('calcYears').value);
-  const months = years * 12;
-  const lumpTotal = model.lumpPrice + model.yearlyFilter * years;
-  const rentalTotal = model.rentalMonthly * months;
-  const difference = lumpTotal - rentalTotal;
-  const cheaper = difference > 0 ? "일시불 자가관리" : "자가관리 렌탈";
-  const amount = Math.abs(difference).toLocaleString();
-
-  document.getElementById('calcResult').innerHTML = `
-    <strong>${escapeHtml(model.brand)} ${escapeHtml(model.name)}</strong><br>
-    ${years}년 기준 일시불 자가관리 총비용: <strong>${lumpTotal.toLocaleString()}원</strong><br>
-    ${years}년 기준 렌탈 총비용: <strong>${rentalTotal.toLocaleString()}원</strong><br>
-    결과: <strong>${cheaper}</strong>가 약 ${amount}원 더 저렴합니다.
-  `;
-}
-
-render();
-</script>
 </body>
 </html>
